@@ -5,6 +5,7 @@ import { AboutUs } from './pages/about-us/about-us';
 import { ContactUs } from './pages/contact-us/contact-us';
 import { Portfolio } from './pages/portfolio/portfolio';
 import { Services } from './pages/services/services';
+import { BookConsultation } from './pages/book-consultation/book-consultation';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'Into Art | Home' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'contact', component: ContactUs, title: 'Into Art | Contact' },
   { path: 'portfolio', component: Portfolio, title: 'Into Art | Portfolio' },
   { path: 'services', component: Services, title: 'Into Art | Services' },
-  { path: '**', redirectTo: '' }, // fallback to home for unknown routes
+  { path: 'book-consultation', component: BookConsultation, title: 'Into Art | Book Consultation' },
+  { path: '**', redirectTo: '' },
 ];
