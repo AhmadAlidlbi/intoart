@@ -1,18 +1,64 @@
-<nav class="navbar">
-    <div class="logo">
-      <img src="assets/logo.png" alt="Into Art Logo" />
-      <span>Into Art</span>
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a routerLink="/" class="logo-link" (click)="closeMenu()" aria-label="Into Art home">
+        <img src="assets/trlogo.png" alt="Into Art Logo" class="logo-image"/>
+      </a>
     </div>
-  
-    <div class="menu-icon" (click)="toggleMenu()">
-      <i [class]="menuOpen ? 'fa fa-times' : 'fa fa-bars'"></i>
+
+    <div class="nav-menu">
+      <div class="nav-items">
+        <a
+          *ngFor="let item of navItems"
+          [routerLink]="item.path"
+          class="nav-link"
+          (click)="closeMenu()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ item.name }}
+        </a>
+      </div>
     </div>
-  
-    <ul [class.active]="menuOpen" class="nav-links">
-      <li><a routerLink="/" routerLinkActive="active" (click)="closeMenu()">Home</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Projects</a></li>
-      <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a></li>
-    </ul>
-  </nav>
-  
+
+    <div class="nav-actions">
+      <button class="cta-button" (click)="bookConsultation()">Book Your Consultation</button>
+    </div>
+
+    <div class="nav-toggle" (click)="toggleMenu()">
+      <span class="hamburger-line" [class.active]="isMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMenuOpen"></span>
+    </div>
+  </div>
+
+  <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+
+  <div class="mobile-menu" [class.active]="isMenuOpen">
+    <div class="mobile-menu-header">
+      <div class="mobile-logo">Into Art</div>
+      <button class="close-button" (click)="closeMenu()">
+        <span class="close-icon"></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav-items">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+        class="mobile-nav-link"
+        (click)="closeMenu()"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ item.name }}
+      </a>
+    </div>
+
+    <div class="mobile-menu-footer">
+      <button class="mobile-cta-button" (click)="bookConsultation(); closeMenu()">
+        Book Your Consultation
+      </button>
+    </div>
+  </div>
+</nav>
